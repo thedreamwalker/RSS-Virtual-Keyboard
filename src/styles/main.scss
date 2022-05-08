@@ -1,3 +1,5 @@
+@import '../../node_modules/normalize.css/normalize.css';
+
 .keyboard {
   display: flex;
   flex-direction: column;
@@ -38,13 +40,16 @@
   transition: .3s;
 }
 
-.keyboard__button:active {
+.keyboard__button:active,
+.keyboard__button.active {
   background-color: beige;
   border-radius: 8px;
 }
 
 .keyboard__key-wide {
   width: 10.7%;
+  text-transform: capitalize;
+
 }
 
 .keyboard__key-extra-wide {

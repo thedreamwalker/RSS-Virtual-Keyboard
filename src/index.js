@@ -1,6 +1,7 @@
 import './styles/main.scss';
 
 //let isLanguage = en;
+let capsLock = 0;
 
 const keyLayoutEN = [
   ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace"],
@@ -25,70 +26,84 @@ const addKeys = (keyboard) => {
       keyRow.appendChild(keyElement);
   
       switch (keyLayoutEN[i][j]) {
-        case "backspace":
-          keyElement.classList.add("keyboard__key-wide");
-          keyElement.innerHTML = 'backspace';
+        case 'backspace':
+          keyElement.classList.add('keyboard__key-wide');
+          keyElement.innerHTML = 'Backspace';
   
-          keyElement.addEventListener("click", () => {
-            this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
-            this._triggerEvent("oninput");
+          keyElement.addEventListener('click', () => {
+
           });
   
-          break;
+        break;
   
-        case "caps":
-          keyElement.classList.add("keyboard__key-wide", "keyboard__key--activatable");
-          keyElement.innerHTML = 'caps';
+        case 'caps':
+          keyElement.classList.add('keyboard__key-wide', 'keyboard__key--activatable');
+          keyElement.innerHTML = 'CapsLock';
   
-          keyElement.addEventListener("click", () => {
-            this._toggleCapsLock();
-            keyElement.classList.toggle("keyboard__key-active", this.properties.capsLock);
+          keyElement.addEventListener('click', () => {
+            capsLock === 0 ? capsLock = 1 : capsLock = 0;
           });
   
-          break;
+        break;
   
-        case "enter":
-          keyElement.classList.add("keyboard__key-wide");
-          keyElement.innerHTML = 'enter';
+        case 'enter':
+          keyElement.classList.add('keyboard__key-wide');
+          keyElement.innerHTML = 'Enter';
   
-          keyElement.addEventListener("click", () => {
-            this.properties.value += "\n";
-            this._triggerEvent("oninput");
+          keyElement.addEventListener('click', () => {
+            document.body.querySelector('.keyboard__textarea').innerHTML += '\n';
           });
   
-          break;
+        break;
   
-        case "space":
-          keyElement.classList.add("keyboard__key-extra-wide");
+        case 'space':
+          keyElement.classList.add('keyboard__key-extra-wide');
           keyElement.innerHTML = '—';
   
-          keyElement.addEventListener("click", () => {
-            this.properties.value += " ";
-            this._triggerEvent("oninput");
+          keyElement.addEventListener('click', () => {
+            document.body.querySelector('.keyboard__textarea').innerHTML += ' ';
           });
   
           break;
   
-        case "shift":
-          keyElement.classList.add("keyboard__key-wide");
+        case 'shift':
+          keyElement.classList.add('keyboard__key-wide', 'keyboard__key-double');
           keyElement.innerHTML = 'shift';
   
-          keyElement.addEventListener("click", () => {
-            this.close();
-            this._triggerEvent("onclose");
+          keyElement.addEventListener('click', () => {
+
           });
   
           break;
+
+          case 'ctrl':
+            keyElement.classList.add('keyboard__key-double');
+            keyElement.innerHTML = 'ctrl';
+    
+            keyElement.addEventListener('click', () => {
+
+            });
+    
+            break;
+
+            case 'alt':
+            keyElement.classList.add('keyboard__key-double');
+            keyElement.innerHTML = 'alt';
+    
+            keyElement.addEventListener('click', () => {
+
+            });
+    
+            break;
   
         default:
           keyElement.textContent = keyLayoutEN[i][j].toLowerCase();
   
-        keyElement.addEventListener("click", () => {
-            this.properties.value += this.properties.capsLock ? keyLayoutEN[i][j].toUpperCase() : keyLayoutEN[i][j].toLowerCase();
-            this._triggerEvent("oninput");
-          });
+        keyElement.addEventListener('click', () => {
+          document.body.querySelector('.keyboard__textarea').innerHTML += capsLock === 1 ? keyLayoutEN[i][j].toUpperCase() : keyLayoutEN[i][j].toLowerCase();
+        });
   
-          break;
+        break;
       }
     };
   };
@@ -111,3 +126,203 @@ const setKeyboard = () => {
 };
 
 setKeyboard();
+
+const allButtons = document.querySelectorAll('.keyboard__button');
+
+const allButtonsDouble = document.querySelectorAll('.keyboard__key-double');
+
+const presserButton = (event, action) => {
+  const keyName = event.key;
+  const keyCode = event.code;
+
+  allButtons.forEach(element => {
+
+    if (element.innerHTML === keyName) {
+      action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+    };
+  });
+
+  switch (keyName) {
+    case "Tab":
+      allButtons.forEach(element => {
+        if (element.innerHTML === 'tab') {
+          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+        };
+      });
+
+      break;
+
+      case "Delete":
+        allButtons.forEach(element => {
+          if (element.innerHTML === 'del') {
+            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          };
+        });
+  
+        break;
+
+
+    case "Meta":
+      allButtons.forEach(element => {
+        if (element.innerHTML === 'win') {
+          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+        };
+      });
+      break;
+
+    case "ArrowUp":
+      allButtons.forEach(element => {
+        if (element.innerHTML === '▲') {
+          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+        };
+      });
+      break;
+
+      case "ArrowDown":
+        allButtons.forEach(element => {
+          if (element.innerHTML === '▼') {
+            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          };
+        });
+      break;
+
+    case "ArrowLeft":
+      allButtons.forEach(element => {
+        if (element.innerHTML === '◄') {
+          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+        };
+      });
+      break;
+
+      case "ArrowRight":
+        allButtons.forEach(element => {
+          if (element.innerHTML === '►') {
+            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          };
+        });
+        break;
+
+    case " ":
+      allButtons.forEach(element => {
+        if (element.innerHTML === '—') {
+          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+        };
+      });
+
+      break;
+
+    default:
+
+      break;
+  }
+
+  switch (keyCode) {
+    case "ShiftLeft":
+
+    for (let i = 0; i < allButtonsDouble.length; i++) {
+      if (allButtonsDouble[i].innerHTML === 'shift') {
+        action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+        break;
+      }
+    }
+    break;
+
+    case "ShiftRight":
+
+      for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
+        if (allButtonsDouble[i].innerHTML === 'shift') {
+          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          break;
+        }
+      }
+    break;
+
+
+    case "AltLeft":
+      for (let i = 0; i < allButtonsDouble.length; i++) {
+        if (allButtonsDouble[i].innerHTML === 'alt') {
+          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          break;
+        }
+      }
+        break;
+
+    case "AltRight":
+
+      for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
+        if (allButtonsDouble[i].innerHTML === 'alt') {
+          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          break;
+        }
+      }
+    break;
+
+    case "ControlLeft":
+      for (let i = 0; i < allButtonsDouble.length; i++) {
+        if (allButtonsDouble[i].innerHTML === 'ctrl') {
+          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          break;
+        }
+      }
+        break;
+
+    case "ControlRight":
+
+      for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
+        if (allButtonsDouble[i].innerHTML === 'ctrl') {
+          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          break;
+        }
+      }
+    break;
+
+    default:
+
+      break;
+  }
+
+};
+
+document.addEventListener('keydown', (event) => {
+
+  presserButton(event, 'add');
+
+  if (keyName === 'Control') {
+    // not alert when only Control key is pressed.
+    return;
+  }
+
+  if (event.ctrlKey) {
+    // Хотя event.key это не 'Control' (например, нажата клавиша 'a'),
+    // то всё же event.ctrlKey может быть true, если ударживается клавиша Ctrl.
+    //alert(`Combination of ctrlKey + ${keyName}`);
+  } else {
+    //alert(`Key pressed ${keyName}`);
+  }
+}, false);
+
+// keyup
+
+document.addEventListener('keyup', (event) => {
+
+  presserButton(event, 'remove');
+
+  const keyName = event.key;
+  const keyCode = event.code;
+/*
+  allButtons.forEach(element => {
+    if (element.innerHTML === keyName) {
+      element.classList.remove('active');
+    };
+  });*/
+
+  // Как только пользователь отпустит клавишу Ctrl, то она больше не будет активной.
+  // Поэтому event.ctrlKey = false.
+  if (keyName === 'Control') {
+    alert('Control key was released');
+  }
+}, false);
+
+allButtons.addEventListener("click", () => {
+  console.log(this.key);
+});
