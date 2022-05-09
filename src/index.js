@@ -55,6 +55,16 @@ const addKeys = (keyboard) => {
           });
   
         break;
+
+        case 'tab':
+          keyElement.classList.add('keyboard__key-wide');
+          keyElement.innerHTML = 'tab';
+  
+          keyElement.addEventListener('click', () => {
+            document.body.querySelector('.keyboard__textarea').innerHTML += '\t';
+          });
+  
+        break;
   
         case 'space':
           keyElement.classList.add('keyboard__key-extra-wide');
@@ -105,8 +115,8 @@ const addKeys = (keyboard) => {
   
         break;
       }
-    };
-  };
+    }
+  }
 };
 
 const setKeyboard = () => {
@@ -138,15 +148,23 @@ const presserButton = (event, action) => {
   allButtons.forEach(element => {
 
     if (element.innerHTML === keyName) {
-      action === 'add' ? element.classList.add('active') : element.classList.remove('active');
-    };
+      if (action === 'add') {
+        element.classList.add('active');
+      } else {
+        element.classList.remove('active');
+      }
+    }
   });
 
   switch (keyName) {
-    case "Tab":
+    case 'Tab':
       allButtons.forEach(element => {
         if (element.innerHTML === 'tab') {
-          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          if (action === 'add') {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
         };
       });
 
@@ -155,7 +173,11 @@ const presserButton = (event, action) => {
       case "Delete":
         allButtons.forEach(element => {
           if (element.innerHTML === 'del') {
-            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+            if (action === 'add') {
+              element.classList.add('active');
+            } else {
+              element.classList.remove('active');
+            }
           };
         });
   
@@ -165,7 +187,11 @@ const presserButton = (event, action) => {
     case "Meta":
       allButtons.forEach(element => {
         if (element.innerHTML === 'win') {
-          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          if (action === 'add') {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
         };
       });
       break;
@@ -173,7 +199,11 @@ const presserButton = (event, action) => {
     case "ArrowUp":
       allButtons.forEach(element => {
         if (element.innerHTML === '▲') {
-          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+          if (action === 'add') {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
         };
       });
       break;
@@ -181,7 +211,11 @@ const presserButton = (event, action) => {
       case "ArrowDown":
         allButtons.forEach(element => {
           if (element.innerHTML === '▼') {
-            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
+            if (action === 'add') {
+              element.classList.add('active');
+            } else {
+              element.classList.remove('active');
+            }
           };
         });
       break;
@@ -189,24 +223,36 @@ const presserButton = (event, action) => {
     case "ArrowLeft":
       allButtons.forEach(element => {
         if (element.innerHTML === '◄') {
-          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
-        };
+          if (action === 'add') {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
+        }
       });
       break;
 
       case "ArrowRight":
         allButtons.forEach(element => {
           if (element.innerHTML === '►') {
-            action === 'add' ? element.classList.add('active') : element.classList.remove('active');
-          };
+            if (action === 'add') {
+              element.classList.add('active');
+            } else {
+              element.classList.remove('active');
+            }
+          }
         });
         break;
 
     case " ":
       allButtons.forEach(element => {
         if (element.innerHTML === '—') {
-          action === 'add' ? element.classList.add('active') : element.classList.remove('active');
-        };
+          if (action === 'add') {
+            element.classList.add('active');
+          } else {
+            element.classList.remove('active');
+          }
+        }
       });
 
       break;
@@ -221,7 +267,11 @@ const presserButton = (event, action) => {
 
     for (let i = 0; i < allButtonsDouble.length; i++) {
       if (allButtonsDouble[i].innerHTML === 'shift') {
-        action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+        if (action === 'add') {
+          allButtonsDouble[i].classList.add('active');
+        } else {
+          allButtonsDouble[i].classList.remove('active');
+        }
         break;
       }
     }
@@ -231,7 +281,11 @@ const presserButton = (event, action) => {
 
       for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
         if (allButtonsDouble[i].innerHTML === 'shift') {
-          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          if (action === 'add') {
+            allButtonsDouble[i].classList.add('active');
+          } else {
+            allButtonsDouble[i].classList.remove('active');
+          }
           break;
         }
       }
@@ -241,7 +295,11 @@ const presserButton = (event, action) => {
     case "AltLeft":
       for (let i = 0; i < allButtonsDouble.length; i++) {
         if (allButtonsDouble[i].innerHTML === 'alt') {
-          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          if (action === 'add') {
+            allButtonsDouble[i].classList.add('active');
+          } else {
+            allButtonsDouble[i].classList.remove('active');
+          }
           break;
         }
       }
@@ -251,26 +309,39 @@ const presserButton = (event, action) => {
 
       for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
         if (allButtonsDouble[i].innerHTML === 'alt') {
-          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          if (action === 'add') {
+            allButtonsDouble[i].classList.add('active');
+          } else {
+            allButtonsDouble[i].classList.remove('active');
+          }
           break;
         }
       }
     break;
 
-    case "ControlLeft":
+    case 'ControlLeft':
       for (let i = 0; i < allButtonsDouble.length; i++) {
         if (allButtonsDouble[i].innerHTML === 'ctrl') {
-          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          if (action === 'add') {
+            allButtonsDouble[i].classList.add('active');
+          } else {
+            allButtonsDouble[i].classList.remove('active');
+          }
           break;
         }
       }
         break;
 
-    case "ControlRight":
+    case 'ControlRight':
 
       for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
         if (allButtonsDouble[i].innerHTML === 'ctrl') {
-          action === 'add' ? allButtonsDouble[i].classList.add('active') : allButtonsDouble[i].classList.remove('active');
+          if (action === 'add') {
+            allButtonsDouble[i].classList.add('active');
+          } else {
+            allButtonsDouble[i].classList.remove('active');
+          }
+
           break;
         }
       }
@@ -286,19 +357,6 @@ const presserButton = (event, action) => {
 document.addEventListener('keydown', (event) => {
 
   presserButton(event, 'add');
-
-  if (keyName === 'Control') {
-    // not alert when only Control key is pressed.
-    return;
-  }
-
-  if (event.ctrlKey) {
-    // Хотя event.key это не 'Control' (например, нажата клавиша 'a'),
-    // то всё же event.ctrlKey может быть true, если ударживается клавиша Ctrl.
-    //alert(`Combination of ctrlKey + ${keyName}`);
-  } else {
-    //alert(`Key pressed ${keyName}`);
-  }
 }, false);
 
 // keyup
@@ -306,23 +364,4 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
 
   presserButton(event, 'remove');
-
-  const keyName = event.key;
-  const keyCode = event.code;
-/*
-  allButtons.forEach(element => {
-    if (element.innerHTML === keyName) {
-      element.classList.remove('active');
-    };
-  });*/
-
-  // Как только пользователь отпустит клавишу Ctrl, то она больше не будет активной.
-  // Поэтому event.ctrlKey = false.
-  if (keyName === 'Control') {
-    alert('Control key was released');
-  }
 }, false);
-
-allButtons.addEventListener("click", () => {
-  console.log(this.key);
-});
