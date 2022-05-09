@@ -1,6 +1,5 @@
 import './styles/main.scss';
 
-//let isLanguage = en;
 let capsLock = 0;
 
 const keyLayoutEN = [
@@ -10,8 +9,6 @@ const keyLayoutEN = [
   ["shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "▲", "shift"],
   ["ctrl", "win", "alt", "space", "alt", "◄", "▼", "►", "ctrl"]
 ];
-
-// add buttons
 
 const addKeys = (keyboard) => {
   for (let i = 0; i < keyLayoutEN.length; i++) {
@@ -110,7 +107,11 @@ const addKeys = (keyboard) => {
           keyElement.textContent = keyLayoutEN[i][j].toLowerCase();
   
         keyElement.addEventListener('click', () => {
-          document.body.querySelector('.keyboard__textarea').innerHTML += capsLock === 1 ? keyLayoutEN[i][j].toUpperCase() : keyLayoutEN[i][j].toLowerCase();
+          if (capsLock === 1) {
+            document.body.querySelector('.keyboard__textarea').innerHTML += keyLayoutEN[i][j].toUpperCase();
+          } else {
+            document.body.querySelector('.keyboard__textarea').innerHTML += keyLayoutEN[i][j].toLowerCase();
+          }
         });
   
         break;
@@ -165,12 +166,12 @@ const presserButton = (event, action) => {
           } else {
             element.classList.remove('active');
           }
-        };
+        }
       });
 
       break;
 
-      case "Delete":
+      case 'Delete':
         allButtons.forEach(element => {
           if (element.innerHTML === 'del') {
             if (action === 'add') {
@@ -178,13 +179,13 @@ const presserButton = (event, action) => {
             } else {
               element.classList.remove('active');
             }
-          };
+          }
         });
   
         break;
 
 
-    case "Meta":
+    case 'Meta':
       allButtons.forEach(element => {
         if (element.innerHTML === 'win') {
           if (action === 'add') {
@@ -192,11 +193,11 @@ const presserButton = (event, action) => {
           } else {
             element.classList.remove('active');
           }
-        };
+        }
       });
       break;
 
-    case "ArrowUp":
+    case 'ArrowUp':
       allButtons.forEach(element => {
         if (element.innerHTML === '▲') {
           if (action === 'add') {
@@ -204,11 +205,11 @@ const presserButton = (event, action) => {
           } else {
             element.classList.remove('active');
           }
-        };
+        }
       });
       break;
 
-      case "ArrowDown":
+      case 'ArrowDown':
         allButtons.forEach(element => {
           if (element.innerHTML === '▼') {
             if (action === 'add') {
@@ -216,11 +217,11 @@ const presserButton = (event, action) => {
             } else {
               element.classList.remove('active');
             }
-          };
+          }
         });
       break;
 
-    case "ArrowLeft":
+    case 'ArrowLeft':
       allButtons.forEach(element => {
         if (element.innerHTML === '◄') {
           if (action === 'add') {
@@ -232,7 +233,7 @@ const presserButton = (event, action) => {
       });
       break;
 
-      case "ArrowRight":
+      case 'ArrowRight':
         allButtons.forEach(element => {
           if (element.innerHTML === '►') {
             if (action === 'add') {
@@ -244,7 +245,7 @@ const presserButton = (event, action) => {
         });
         break;
 
-    case " ":
+    case ' ':
       allButtons.forEach(element => {
         if (element.innerHTML === '—') {
           if (action === 'add') {
@@ -263,7 +264,7 @@ const presserButton = (event, action) => {
   }
 
   switch (keyCode) {
-    case "ShiftLeft":
+    case 'ShiftLeft':
 
     for (let i = 0; i < allButtonsDouble.length; i++) {
       if (allButtonsDouble[i].innerHTML === 'shift') {
@@ -277,7 +278,7 @@ const presserButton = (event, action) => {
     }
     break;
 
-    case "ShiftRight":
+    case 'ShiftRight':
 
       for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
         if (allButtonsDouble[i].innerHTML === 'shift') {
@@ -292,7 +293,7 @@ const presserButton = (event, action) => {
     break;
 
 
-    case "AltLeft":
+    case 'AltLeft':
       for (let i = 0; i < allButtonsDouble.length; i++) {
         if (allButtonsDouble[i].innerHTML === 'alt') {
           if (action === 'add') {
@@ -303,9 +304,9 @@ const presserButton = (event, action) => {
           break;
         }
       }
-        break;
+      break;
 
-    case "AltRight":
+    case 'AltRight':
 
       for (let i = allButtonsDouble.length - 1; i >= 0; i--) {
         if (allButtonsDouble[i].innerHTML === 'alt') {
@@ -358,8 +359,6 @@ document.addEventListener('keydown', (event) => {
 
   presserButton(event, 'add');
 }, false);
-
-// keyup
 
 document.addEventListener('keyup', (event) => {
 
