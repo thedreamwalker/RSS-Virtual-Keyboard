@@ -1,0 +1,58 @@
+@import '../../node_modules/normalize.css/normalize.css';
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1% 5px;
+  background: rgb(160, 160, 160);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  gap: 5px;
+}
+
+.keyboard__textarea-wrapper {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.keyboard__textarea {
+  width: 100%;
+  max-width: 1000px;
+  margin: 10px auto 10px;
+}
+
+.keyboard__row {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+
+.keyboard__button {
+  width: 40px;
+  height: 50px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  flex-grow: 1;
+  transition: .3s;
+}
+
+.keyboard__button:active,
+.keyboard__button.active {
+  background-color: rgb(216, 220, 255);
+  border-radius: 8px;
+}
+
+.keyboard__key-wide {
+  width: 10.7%;
+  text-transform: capitalize;
+
+}
+
+.keyboard__key-extra-wide {
+  width: 44.5%;
+}
+
